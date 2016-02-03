@@ -1,6 +1,6 @@
 {
   "name": "fit-table",
-  "version": "1.1.79",
+  "version": "1.1.80",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "fit-radio": "^1.1.36",
     "fit-style": "^1.1.21",
     "fit-modal": "^1.1.22",
+    "fit-select": "^1.1.21",
     "fit-timepicker": "^0.2.44",
     "fit-datepicker": "^0.2.46"
   }
