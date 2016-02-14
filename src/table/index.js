@@ -672,14 +672,16 @@ export default class Table extends React.Component {
 }
 
 Table.defaultProps = {
+    // @desc 表格标题
     title: '表格',
 
-    // 表头字段
+    // @desc 表头字段
     fields: [],
 
-    // 打底数据
+    // @desc 打底数据
     datas: [],
 
+    // @desc 新增
     add: {
         url: '',
         method: 'get',
@@ -692,6 +694,7 @@ Table.defaultProps = {
         }
     },
 
+    // @desc 删除
     del: {
         url: '',
         method: 'get',
@@ -709,6 +712,7 @@ Table.defaultProps = {
         }
     },
 
+    // @desc 修改
     update: {
         url: '',
         method: 'get',
@@ -721,6 +725,7 @@ Table.defaultProps = {
         }
     },
 
+    // @desc 获取数据
     get: {
         url: '',
         method: 'get',
@@ -733,25 +738,25 @@ Table.defaultProps = {
         }
     },
 
-    search: [],
+    // @desc 开启何种列选择
+    // @enum radio checkbox
+    selector: '',
 
-    // 行选择
-    selector: {},
-
-    // 条件查询
+    // @desc 条件查询
     finder: {},
 
-    // 拓展
+    // @desc 左下角自定义拓展
     extend: (table)=> {
     },
 
-    // 排序回调
+    // @desc 排序回调
     onSort: (key)=> {
     },
 
-    // 编辑回调
+    // @desc 编辑回调
     onEdit: ()=> {
     },
 
+    // @desc 开启响应式表格,内容过多时出现横向滚动条
     responsive: false
 }

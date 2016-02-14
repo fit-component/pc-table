@@ -198,7 +198,7 @@ export default class Finder extends React.Component {
                     <Button addonLeft="search"
                             onClick={this.handleSearch.bind(this)}
                             loading={this.state.loading}
-                            type="primary">查询</Button>
+                            type="default">查询</Button>
                 </div>
             </div>
         )
