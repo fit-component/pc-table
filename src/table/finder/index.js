@@ -33,8 +33,10 @@ export default class Finder extends React.Component {
             return lists.map((item, index)=> {
                 let itemStyle = {
                     marginLeft: index === 0 ? null : 10,
+	                  marginRight: 15,
                     width: item.width || null,
-                    display: 'flex'
+                    display: 'flex',
+	                  flex: 1
                 }
 
                 switch (item.type) {
@@ -42,6 +44,7 @@ export default class Finder extends React.Component {
                     return (
                         <Input key={'item'+index}
                                style={itemStyle}
+                               width={150}
                             {...item.props}
                                label={notEnum?null:item.label}
                                value={item.value}
