@@ -43,7 +43,7 @@ export default class Finder extends React.Component {
                     return (
                         <Input key={'item'+index}
                                style={itemStyle}
-                               width={150}
+                               width={item.width || 150}
                             {...item.props}
                                label={notEnum?null:item.label}
                                value={item.value}
@@ -90,7 +90,7 @@ export default class Finder extends React.Component {
                         <DateInput key={'item'+index}
                                    style={dateStyle}
                                    input={{label:notEnum?null:item.label}}
-                                   width={250}
+                                   width={item.width || 250}
                             {...item.props}
                                    defaultValue={item.value}
                                    onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
@@ -118,7 +118,7 @@ export default class Finder extends React.Component {
                         <div key={'item'+index}
                              style={itemStyle}>
                             <Select onChange={this.handleEnumChange.bind(this,index)}
-                                    width="120"
+                                    width={item.width || 120}
                                     simple
                                     key={index}
                                     value={item.value || item.defaultValue}>
