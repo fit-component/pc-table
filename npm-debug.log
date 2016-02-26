@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'publish',
+1 verbose cli   '&>/dev/null' ]
+2 info using npm@3.5.2
+3 info using node@v5.2.0
+4 verbose publish [ '&>/dev/null' ]
+5 silly cache add args [ '&>/dev/null', null ]
+6 verbose cache add spec &>/dev/null
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '&>/dev/null',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '&>/dev/null',
+7 silly cache add   spec: '/Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null',
+7 silly cache add   type: 'local' }
+8 error addLocal Could not install /Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null
+9 verbose stack Error: ENOENT: no such file or directory, open '/Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null'
+9 verbose stack     at Error (native)
+10 verbose cwd /Users/andycall/baiduYun/Baidu/awesome/lib/pc/table
+11 error Darwin 15.3.0
+12 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish" "&>/dev/null"
+13 error node v5.2.0
+14 error npm  v3.5.2
+15 error path /Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null
+16 error code ENOENT
+17 error errno -2
+18 error syscall open
+19 error enoent ENOENT: no such file or directory, open '/Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null'
+20 error enoent ENOENT: no such file or directory, open '/Users/andycall/baiduYun/Baidu/awesome/lib/pc/table/&>/dev/null'
+20 error enoent This is most likely not a problem with npm itself
+20 error enoent and is related to npm not being able to find a file.
+21 verbose exit [ -2, true ]
