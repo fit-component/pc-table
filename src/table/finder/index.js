@@ -219,3 +219,5 @@ export default class Finder extends React.Component {
 Finder.defaultProps = {
     finder: []
 }
+
+
