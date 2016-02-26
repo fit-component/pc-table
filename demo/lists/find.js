@@ -46,7 +46,7 @@ const info = {
         key: 'free',
         type: 'select',
         select: [{
-            key: 1,
+            key: 0,
             value: '星期一'
         }, {
             key: 2,
@@ -67,11 +67,16 @@ const info = {
             key: 7,
             value: '星期日'
         }],
-        defaultValue: 2
+        defaultValue: 0
     }, {
         label: '时间',
         key: 'free',
         type: 'time',
+        format: 'YYYY-MM-DD'
+    }, {
+        label: '时间',
+        key: 'free',
+        type: 'date',
         format: 'YYYY-MM-DD'
     }, {
         type: 'enum',

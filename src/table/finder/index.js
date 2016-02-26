@@ -33,10 +33,9 @@ export default class Finder extends React.Component {
             return lists.map((item, index)=> {
                 let itemStyle = {
                     marginLeft: index === 0 ? null : 10,
-	                  marginRight: 15,
-                    width: item.width || null,
-                    display: 'flex',
-	                  flex: 1
+	                  marginRight: 10,
+                    width: item.width || 150,
+                    display: 'flex'
                 }
 
                 switch (item.type) {
@@ -55,16 +54,22 @@ export default class Finder extends React.Component {
                         return (
                             <Option key={elIndex}
                                 {...item.props}
-                                    value={elItem.key}>{elItem.value}</Option>
+                                    value={elItem.key.toString()}>{elItem.value}</Option>
                         )
                     })
+
+                    if (item.defaultValue !== undefined) {
+                        item.defaultValue = item.defaultValue.toString()
+                    }
+
+
                     return (
                         <Select width="100%"
                                 style={itemStyle}
                                 key={'item'+index}
                             {...item.props}
                                 label={notEnum?null:item.label}
-                                value={item.value||item.defaultValue||item.select[0].key}
+                                value={item.value.toString()||item.defaultValue||item.select[0].key}
                                 onChange={this.handleChange.bind(this,index,parentIndex)}>
                             {Options}
                         </Select>
@@ -79,10 +84,13 @@ export default class Finder extends React.Component {
                                     onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
                 case 'date':
+                    let dateStyle = _.assign(_.cloneDeep(itemStyle), { width: 300})
+
                     return (
                         <DateInput key={'item'+index}
-                                   style={itemStyle}
+                                   style={dateStyle}
                                    input={{label:notEnum?null:item.label}}
+                                   width={250}
                             {...item.props}
                                    defaultValue={item.value}
                                    onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
