@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fit-style": "^0.0.1",
+    "fit-style": "^1.1.46",
     "react": "^0.14.7",
     "fit-button": "^1.2.70",
     "fit-modal": "^1.1.49",
