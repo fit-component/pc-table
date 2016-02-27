@@ -13,22 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.3",
-    "fit-button": "^1.2.66",
-    "fit-checkbox": "^1.1.53",
-    "fit-datepicker": "^0.2.91",
-    "fit-input": "^1.1.61",
-    "fit-modal": "^1.1.47",
-    "fit-pagination": "^1.1.45",
-    "fit-radio": "^1.1.67",
-    "fit-select": "^1.1.48",
-    "fit-style": "^1.1.45",
-    "fit-timepicker": "^0.2.79",
-    "font-awesome": "^4.5.0",
-    "jquery": "^2.1.4",
-    "lodash": "^3.10.1",
     "react": "^0.14.7",
-    "superagent": "^1.7.2",
-    "react-dom": "^0.14.7"
+    "lodash": "^3.10.1",
+    "react-dom": "^0.14.7",
+    "classnames": "^2.2.1"
   }
 }
