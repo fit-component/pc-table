@@ -9,6 +9,7 @@ import Button from 'fit-button'
 import Finder from './finder'
 import Add from './add'
 import Modal from 'fit-modal'
+import RenderTo from 'fit-render-to'
 import $ from 'jquery'
 import _ from 'lodash'
 import './index.scss'
@@ -642,8 +643,10 @@ export default class Table extends React.Component {
                     </div>
 
                     {_.isEmpty(this.props.finder) ? null :
-                        <Finder onSearch={this.handleSearch.bind(this)}
-                                finder={this.props.finder}/>}
+                        this.props.finderSelector ? <RenderTo selector={this.props.finderSelector}>
+                            <Finder onSearch={this.handleSearch.bind(this)} finder={this.props.finder}/>
+                        </RenderTo> :
+                            <Finder onSearch={this.handleSearch.bind(this)} finder={this.props.finder}/> }
 
                     {Table}
 
@@ -758,5 +761,8 @@ Table.defaultProps = {
     },
 
     // @desc 开启响应式表格,内容过多时出现横向滚动条
-    responsive: false
+    responsive: false,
+
+    // @desc 通过指定选择器, 渲染finder组件到指定dom下
+    finderSelector: null
 }
