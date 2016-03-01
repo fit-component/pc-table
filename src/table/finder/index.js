@@ -8,6 +8,13 @@ import $ from 'jquery'
 import _ from 'lodash'
 import './index.scss'
 
+const toString = (value)=> {
+    if (!value) {
+        return null
+    }
+    return value.toString()
+}
+
 export default class Finder extends React.Component {
     constructor(props) {
         super(props)
@@ -33,7 +40,7 @@ export default class Finder extends React.Component {
             return lists.map((item, index)=> {
                 let itemStyle = {
                     marginLeft: index === 0 ? null : 10,
-	                  marginRight: 10,
+                    marginRight: 10,
                     width: item.width || 150,
                     display: 'flex'
                 }
@@ -54,12 +61,12 @@ export default class Finder extends React.Component {
                         return (
                             <Option key={elIndex}
                                 {...item.props}
-                                    value={elItem.key.toString()}>{elItem.value}</Option>
+                                    value={toString(elItem.key)}>{elItem.value}</Option>
                         )
                     })
 
                     if (item.defaultValue !== undefined) {
-                        item.defaultValue = item.defaultValue.toString()
+                        item.defaultValue = toString(item.defaultValue)
                     }
 
 
@@ -69,7 +76,7 @@ export default class Finder extends React.Component {
                                 key={'item'+index}
                             {...item.props}
                                 label={notEnum?null:item.label}
-                                value={item.value.toString()||item.defaultValue||item.select[0].key}
+                                value={toString(item.value)||item.defaultValue||item.select[0].key}
                                 onChange={this.handleChange.bind(this,index,parentIndex)}>
                             {Options}
                         </Select>
@@ -84,7 +91,7 @@ export default class Finder extends React.Component {
                                     onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
                 case 'date':
-                    let dateStyle = _.assign(_.cloneDeep(itemStyle), { width: 300})
+                    let dateStyle = _.assign(_.cloneDeep(itemStyle), {width: 300})
 
                     return (
                         <DateInput key={'item'+index}
