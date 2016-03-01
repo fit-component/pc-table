@@ -236,6 +236,9 @@ export default class Table extends React.Component {
                 let newPaginOpts = this.state.paginOpts
                 let newDatas = this.props.get.success(res, newPaginOpts, this.extendInfo)
 
+                // 手动调用翻页组件
+                this.refs.pagination && this.refs.pagination.jump(page || this.state.currentPage)
+
                 this.setState({
                     datas: newDatas,
                     paginOpts: newPaginOpts,
@@ -644,9 +647,11 @@ export default class Table extends React.Component {
 
                     {_.isEmpty(this.props.finder) ? null :
                         this.props.finderSelector ? <RenderTo selector={this.props.finderSelector}>
-                            <Finder onSearch={this.handleSearch.bind(this)} finder={this.props.finder}/>
+                            <Finder onSearch={this.handleSearch.bind(this)}
+                                    finder={this.props.finder}/>
                         </RenderTo> :
-                            <Finder onSearch={this.handleSearch.bind(this)} finder={this.props.finder}/> }
+                            <Finder onSearch={this.handleSearch.bind(this)}
+                                    finder={this.props.finder}/> }
 
                     {Table}
 
@@ -656,6 +661,7 @@ export default class Table extends React.Component {
                                 style={{flexGrow:1,paddingLeft:15}}>{this.props.extend(this.extendInfo)}</div>
                             {_.isEmpty(this.state.paginOpts) ? null :
                                 <Pagination style={{flexGrow:1}}
+                                            ref="pagination"
                                             onChange={this.handleChangePage.bind(this)}
                                     {...this.state.paginOpts}
                                             loading={this.state.loading}/>
