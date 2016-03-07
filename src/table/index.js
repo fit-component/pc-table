@@ -215,6 +215,8 @@ export default class Table extends React.Component {
                 datas: this.props.datas
             })
         } else {
+            const postData = this.props.get.beforeSend(mergedSearchOpts, page || this.state.currentPage, this.prevResponse, this.extendInfo)
+
             $.ajax({
                 url: this.props.get.url,
                 method: this.props.get.method,
@@ -224,7 +226,7 @@ export default class Table extends React.Component {
                         loading: true
                     })
                 },
-                data: this.props.get.beforeSend(mergedSearchOpts, page || this.state.currentPage, this.prevResponse, this.extendInfo)
+                data: postData
             }).done((res)=> {
                 if (typeof res === 'string') {
                     res = JSON.parse(res)
@@ -245,6 +247,8 @@ export default class Table extends React.Component {
                     currentPage: page || this.state.currentPage,
                     loading: false,
                     selectRowList: []
+                }, ()=> {
+                    this.props.onTableUpdate(newDatas, postData)
                 })
             })
         }
@@ -764,6 +768,10 @@ Table.defaultProps = {
 
     // @desc 编辑回调
     onEdit: ()=> {
+    },
+
+    // @desc 表格数据更新的回调
+    onTableUpdate: ()=> {
     },
 
     // @desc 开启响应式表格,内容过多时出现横向滚动条
