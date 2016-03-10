@@ -476,6 +476,12 @@ export default class Table extends React.Component {
     }
 
     render() {
+        const {className, responsive, del, title, add, fields, finder, finderSelector, extend, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let Th = this.state.fields.map((item, index)=> {
             switch (item.type) {
             case 'checkbox':
@@ -521,7 +527,7 @@ export default class Table extends React.Component {
         })
 
         // 如果有删除功能,右侧新增一列
-        if (this.props.del.url !== '' && this.state.showColDeleteButton) {
+        if (del.url !== '' && this.state.showColDeleteButton) {
             Th.push(
                 <th key="delete"></th>
             )
@@ -588,7 +594,7 @@ export default class Table extends React.Component {
             })
 
             // 如果有删除功能,右侧新增一列
-            if (this.props.del.url !== '' && this.state.showColDeleteButton) {
+            if (del.url !== '' && this.state.showColDeleteButton) {
                 Td.push(
                     <td style={{padding:0}}
                         className="remove"
@@ -629,40 +635,40 @@ export default class Table extends React.Component {
             </table>
         )
 
-        if (this.props.responsive) {
+        if (responsive) {
             Table = (
                 <div className="table-responsive">{Table}</div>
             )
         }
 
         return (
-            <div className="_namespace">
+            <div {...others} className={classes}>
                 <div className="panel">
                     <div className="panel-heading">
-                        {this.props.title}
-                        {this.props.add.url === '' ? null :
-                            <Add fields={this.props.fields}
-                                 opts={this.props.add}
+                        {title}
+                        {add.url === '' ? null :
+                            <Add fields={fields}
+                                 opts={add}
                                  onAdd={this.handleAdd.bind(this)}/>
                         }
                         <span className={infoClass}
                               style={{marginLeft:10}}>{this.state.info.message}</span>
                     </div>
 
-                    {_.isEmpty(this.props.finder) ? null :
-                        this.props.finderSelector ? <RenderTo selector={this.props.finderSelector}>
+                    {_.isEmpty(finder) ? null :
+                        finderSelector ? <RenderTo selector={finderSelector}>
                             <Finder onSearch={this.handleSearch.bind(this)}
-                                    finder={this.props.finder}/>
+                                    finder={finder}/>
                         </RenderTo> :
                             <Finder onSearch={this.handleSearch.bind(this)}
-                                    finder={this.props.finder}/> }
+                                    finder={finder}/> }
 
                     {Table}
 
-                    {_.isEmpty(this.state.paginOpts) && _.isEmpty(this.props.extend()) ? null :
+                    {_.isEmpty(this.state.paginOpts) && _.isEmpty(extend()) ? null :
                         <div className="pagination-container">
                             <div
-                                style={{flexGrow:1,paddingLeft:15}}>{this.props.extend(this.extendInfo)}</div>
+                                style={{flexGrow:1,paddingLeft:15}}>{extend(this.extendInfo)}</div>
                             {_.isEmpty(this.state.paginOpts) ? null :
                                 <Pagination style={{flexGrow:1}}
                                             ref="pagination"
@@ -677,7 +683,7 @@ export default class Table extends React.Component {
                 <Modal show={this.state.showDeleteModal}
                        onOk={this.handleDeleteModalOk.bind(this)}
                        onCancel={this.handleDeleteModalCancel.bind(this)}>
-                    <div>{this.props.del.alert(this.currentDeleteColInfo || {})}</div>
+                    <div>{del.alert(this.currentDeleteColInfo || {})}</div>
                 </Modal>
             </div>
         )
