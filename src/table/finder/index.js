@@ -41,7 +41,7 @@ export default class Finder extends React.Component {
                 let itemStyle = {
                     marginLeft: index === 0 ? null : 10,
                     marginRight: 10,
-                    width: item.width || 150,
+                    width: item.width || null,
                     display: 'flex'
                 }
 
@@ -50,7 +50,7 @@ export default class Finder extends React.Component {
                     return (
                         <Input key={'item'+index}
                                style={itemStyle}
-                               width={item.width || 150}
+                               width={item.width || null}
                             {...item.props}
                                label={notEnum?null:item.label}
                                value={item.value}
@@ -91,13 +91,13 @@ export default class Finder extends React.Component {
                                     onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
                 case 'date':
-                    let dateStyle = _.assign(_.cloneDeep(itemStyle), {width: 300})
+                    let dateStyle = _.cloneDeep(itemStyle)
 
                     return (
                         <DateInput key={'item'+index}
                                    style={dateStyle}
                                    input={{label:notEnum?null:item.label}}
-                                   width={item.width || 250}
+                                   width={item.width || null}
                             {...item.props}
                                    defaultValue={item.value}
                                    onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
@@ -125,7 +125,7 @@ export default class Finder extends React.Component {
                         <div key={'item'+index}
                              style={itemStyle}>
                             <Select onChange={this.handleEnumChange.bind(this,index)}
-                                    width={item.width || 120}
+                                    width={item.width || null}
                                     simple
                                     key={index}
                                     value={item.value || item.defaultValue}>

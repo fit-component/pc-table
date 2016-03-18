@@ -506,16 +506,14 @@ export default class Table extends React.Component {
             switch (item.type) {
             case 'checkbox':
                 return (
-                    <th key={index}
-                        style={{width:100}}>
+                    <th key={index}>
                         <Checkbox onChange={this.onTrCheckboxSelectAll.bind(this)}
                                   checked={this.state.datas.length===this.state.selectRowList.length}>全选</Checkbox>
                     </th>
                 )
             case 'radio':
                 return (
-                    <th key={index}
-                        style={{width:100}}></th>
+                    <th key={index}></th>
                 )
             default:
                 let arrowClass = classNames({
