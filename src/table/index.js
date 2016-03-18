@@ -47,14 +47,14 @@ export default class Table extends React.Component {
         handlePropsAddon(this.props)
 
         this.state = {
-            datas: [],
-            paginOpts: {},
+            datas      : [],
+            paginOpts  : {},
             currentPage: 1,
-            loading: false,
-            fields: _.cloneDeep(this.props.fields),
-            info: {
+            loading    : false,
+            fields     : _.cloneDeep(this.props.fields),
+            info       : {
                 message: '',
-                type: ''
+                type   : ''
             },
 
             // 当前排序的key
@@ -91,7 +91,7 @@ export default class Table extends React.Component {
                         x: -1,
                         y: -1
                     },
-                    editValue: null
+                    editValue        : null
                 })
             }
         }
@@ -125,6 +125,12 @@ export default class Table extends React.Component {
 
         // extend获取内容
         this.extendInfo = {
+            // 获取全部列信息
+            getAllRows: ()=> {
+                return _.cloneDeep(this.state.datas)
+            },
+
+            // 获取当前选择的列信息
             getCurrentSelectRows: ()=> {
                 let selectList = []
                 this.state.selectRowList.map((item)=> {
@@ -132,9 +138,19 @@ export default class Table extends React.Component {
                 })
                 return _.cloneDeep(selectList)
             },
+
+            // 获取未选择列的信息
+            getCurrentNotSelectRows: ()=> {
+                let datas = _.cloneDeep(this.state.datas)
+                return _.remove(datas, (item, index)=> {
+                    return !this.state.selectRowList.some(el=>el.index === index)
+                })
+            },
+
             getData: () => {
                 return _.cloneDeep(this.state.datas)
             },
+
             mockDeleteData: (deleteList) => {
                 let datas = _.cloneDeep(this.state.datas)
 
@@ -145,19 +161,23 @@ export default class Table extends React.Component {
                 })
 
                 this.setState({
-                    datas: datas,
+                    datas        : datas,
                     selectRowList: []
                 })
             },
+
             currentPage: ()=> {
                 return this.state.currentPage
             },
+
             jump: (page)=> {
                 this.updateTable(page)
             },
+
             info: (message, type)=> {
                 this.info(setColDeleteButtonVisiblemessage, type)
             },
+
             setColDeleteButtonVisible: (isShow)=> {
                 this.setState({
                     showColDeleteButton: isShow
@@ -185,7 +205,7 @@ export default class Table extends React.Component {
         this.setState({
             info: {
                 message: message,
-                type: type
+                type   : type
             }
         }, ()=> {
             if (this.infoSetTimeout) {
@@ -195,7 +215,7 @@ export default class Table extends React.Component {
                 this.setState({
                     info: {
                         message: '',
-                        type: ''
+                        type   : ''
                     }
                 })
             }, 2000)
@@ -218,15 +238,15 @@ export default class Table extends React.Component {
             const postData = this.props.get.beforeSend(mergedSearchOpts, page || this.state.currentPage, this.prevResponse, this.extendInfo)
 
             $.ajax({
-                url: this.props.get.url,
-                method: this.props.get.method,
-                dataType: this.props.get.dataType || 'json',
+                url       : this.props.get.url,
+                method    : this.props.get.method,
+                dataType  : this.props.get.dataType || 'json',
                 beforeSend: ()=> {
                     this.setState({
                         loading: true
                     })
                 },
-                data: postData
+                data      : postData
             }).done((res)=> {
                 if (typeof res === 'string') {
                     res = JSON.parse(res)
@@ -242,10 +262,10 @@ export default class Table extends React.Component {
                 this.refs.pagination && this.refs.pagination.jump(page || this.state.currentPage)
 
                 this.setState({
-                    datas: newDatas,
-                    paginOpts: newPaginOpts,
-                    currentPage: page || this.state.currentPage,
-                    loading: false,
+                    datas        : newDatas,
+                    paginOpts    : newPaginOpts,
+                    currentPage  : page || this.state.currentPage,
+                    loading      : false,
                     selectRowList: []
                 }, ()=> {
                     this.props.onTableUpdate(newDatas, postData)
@@ -263,7 +283,7 @@ export default class Table extends React.Component {
     onTrRadioClick(info, index) {
         this.setState({
             selectRowList: [{
-                info: info,
+                info : info,
                 index: index
             }]
         })
@@ -275,7 +295,7 @@ export default class Table extends React.Component {
 
         if (checked) {
             newSelectRowList.push({
-                info: info,
+                info : info,
                 index: index
             })
         } else {
@@ -298,7 +318,7 @@ export default class Table extends React.Component {
             let newSelectRowList = []
             this.state.datas.map((item, index)=> {
                 newSelectRowList.push({
-                    info: item,
+                    info : item,
                     index: index
                 })
             })
@@ -329,9 +349,9 @@ export default class Table extends React.Component {
     // 添加
     handleAdd(params, callback) {
         $.ajax({
-            url: this.props.add.url,
-            method: this.props.add.method,
-            data: this.props.add.beforeSend(params),
+            url     : this.props.add.url,
+            method  : this.props.add.method,
+            data    : this.props.add.beforeSend(params),
             dataType: this.props.get.dataType || 'json'
         }).done((res)=> {
             if (typeof res === 'string') {
@@ -369,7 +389,7 @@ export default class Table extends React.Component {
         }
 
         this.setState({
-            sortKey: key,
+            sortKey  : key,
             sortStatu: sortStatu
         }, ()=> {
             let searchParam = this.props.onSort(key, this.state.sortStatu)
@@ -400,9 +420,9 @@ export default class Table extends React.Component {
     // 编辑点击保存按钮
     handleEditSave(key) {
         $.ajax({
-            url: this.props.edit.url,
-            method: this.props.edit.method,
-            data: this.props.edit.beforeSend(this.state.editValue, key),
+            url     : this.props.edit.url,
+            method  : this.props.edit.method,
+            data    : this.props.edit.beforeSend(this.state.editValue, key),
             dataType: this.props.get.dataType || 'json'
         }).done((res)=> {
             if (typeof res === 'string') {
@@ -417,7 +437,7 @@ export default class Table extends React.Component {
                         x: -1,
                         y: -1
                     },
-                    editValue: null
+                    editValue        : null
                 }, ()=> {
                     // 刷新当前页
                     this.updateTable()
@@ -430,15 +450,15 @@ export default class Table extends React.Component {
 
     handleDeleteModalOk() {
         $.ajax({
-            url: this.props.del.url,
-            method: this.props.del.method,
-            dataType: this.props.get.dataType || 'json',
+            url       : this.props.del.url,
+            method    : this.props.del.method,
+            dataType  : this.props.get.dataType || 'json',
             beforeSend: ()=> {
                 this.setState({
                     loading: true
                 })
             },
-            data: this.props.del.beforeSend(this.currentDeleteColInfo)
+            data      : this.props.del.beforeSend(this.currentDeleteColInfo)
         }).done((res)=> {
             if (typeof res === 'string') {
                 res = JSON.parse(res)
@@ -479,7 +499,7 @@ export default class Table extends React.Component {
         const {className, responsive, del, title, add, fields, finder, finderSelector, extend, ...others} = this.props
         const classes = classNames({
             '_namespace': true,
-            [className]: className
+            [className] : className
         })
 
         let Th = this.state.fields.map((item, index)=> {
@@ -500,9 +520,9 @@ export default class Table extends React.Component {
             default:
                 let arrowClass = classNames({
                     'sort-can-use': item.sort && (this.state.sortKey !== item.key || this.state.sortStatu === null),
-                    'fa': item.sort,
-                    'fa-sort': item.sort && (this.state.sortKey !== item.key || this.state.sortStatu === null),
-                    'fa-sort-asc': item.sort && this.state.sortKey === item.key && this.state.sortStatu === 'asc',
+                    'fa'          : item.sort,
+                    'fa-sort'     : item.sort && (this.state.sortKey !== item.key || this.state.sortStatu === null),
+                    'fa-sort-asc' : item.sort && this.state.sortKey === item.key && this.state.sortStatu === 'asc',
                     'fa-sort-desc': item.sort && this.state.sortKey === item.key && this.state.sortStatu === 'desc'
                 })
 
@@ -613,7 +633,7 @@ export default class Table extends React.Component {
         })
 
         let infoClass = classNames({
-            'pull-right': true,
+            'pull-right'          : true,
             [this.state.info.type]: this.state.info.type !== ''
         })
 
@@ -702,23 +722,23 @@ Table.defaultProps = {
 
     // @desc 新增
     add: {
-        url: '',
-        method: 'get',
-        dataType: 'json',
+        url       : '',
+        method    : 'get',
+        dataType  : 'json',
         beforeSend: (info)=> {
             return info
         },
-        success: (res)=> {
+        success   : (res)=> {
             return res.errno === 0
         }
     },
 
     // @desc 删除
     del: {
-        url: '',
-        method: 'get',
-        dataType: 'json',
-        alert: ()=> {
+        url       : '',
+        method    : 'get',
+        dataType  : 'json',
+        alert     : ()=> {
             return (
                 <div>确认删除吗?</div>
             )
@@ -726,33 +746,33 @@ Table.defaultProps = {
         beforeSend: (info)=> {
             return info
         },
-        success: (res)=> {
+        success   : (res)=> {
             return res.errno === 0
         }
     },
 
     // @desc 修改
     update: {
-        url: '',
-        method: 'get',
-        dataType: 'json',
+        url       : '',
+        method    : 'get',
+        dataType  : 'json',
         beforeSend: (info)=> {
             return info
         },
-        success: (res)=> {
+        success   : (res)=> {
             return res.errno === 0
         }
     },
 
     // @desc 获取数据
     get: {
-        url: '',
-        method: 'get',
-        dataType: 'json',
+        url       : '',
+        method    : 'get',
+        dataType  : 'json',
         beforeSend: (info)=> {
             return info
         },
-        success: (res)=> {
+        success   : (res)=> {
             return res.data
         }
     },
