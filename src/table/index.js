@@ -184,13 +184,12 @@ export default class Table extends React.Component {
                 })
             }
         }
-
-        this.updateTable()
     }
 
     componentDidMount() {
         this.dom = ReactDOM.findDOMNode(this)
         $(document).on('click', this.handleDocumentClick)
+        this.updateTable()
     }
 
     componentWillUnmount() {
