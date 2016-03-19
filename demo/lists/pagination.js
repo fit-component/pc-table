@@ -34,15 +34,10 @@ const info = {
 }
 
 export default class Demo extends React.Component {
-    handleClick() {
-        this.refs.table.extendInfo.jump(3)
-    }
-
     render() {
         return (
             <div>
                 <Table ref="table" {...info}/>
-                <div onClick={this.handleClick.bind(this)}>aa</div>
             </div>
         )
     }
