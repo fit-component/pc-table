@@ -3,39 +3,40 @@ import Table from 'fit-table'
 
 const info = {
     fields: [{
-        key: 'id',
+        key  : 'id',
         value: '产品编号',
-        edit: true
+        edit : true
     }, {
-        key: 'yesterday',
+        key  : 'yesterday',
         value: '昨日数据',
-        edit: true
+        edit : true
     }, {
-        key: 'today',
+        key  : 'today',
         value: '今日数据',
-        edit: true
+        edit : true
     }],
-    edit: {
-        url: '/api/table/regex/edit',
-        method: 'post',
+    edit  : {
+        url       : '/api/table/regex/edit',
+        method    : 'post',
         beforeSend: (rowInfo, key)=> {
-            return rowInfo
+            console.log(rowInfo, key)
+            return rowInfo[key]
         },
-        success: (res)=> {
+        success   : (res)=> {
             return {
-                ok: res.ok === true,
+                ok     : res.ok === true,
                 message: res.errmsg
             }
         }
     },
-    get: {
-        url: '/api/table/form',
-        method: 'get',
+    get   : {
+        url       : '/api/table/form',
+        method    : 'get',
         beforeSend: (info, currentPage, response)=> {
             info.page = currentPage
             return info
         },
-        success: (res, pagination)=> {
+        success   : (res, pagination)=> {
             pagination.allPage = res['all_page']
             return res['data']
         }

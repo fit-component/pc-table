@@ -417,11 +417,11 @@ export default class Table extends React.Component {
     }
 
     // 编辑点击保存按钮
-    handleEditSave(key) {
+    handleEditSave(rowInfo, key) {
         $.ajax({
             url     : this.props.edit.url,
             method  : this.props.edit.method,
-            data    : this.props.edit.beforeSend(this.state.editValue, key),
+            data    : this.props.edit.beforeSend(rowInfo, key),
             dataType: this.props.get.dataType || 'json'
         }).done((res)=> {
             if (typeof res === 'string') {
@@ -587,7 +587,7 @@ export default class Table extends React.Component {
                                                onChange={this.handleChangeEditValue.bind(this)}/>
                                         <Button type="success"
                                                 style={{borderRadius:0,marginLeft:-1}}
-                                                onClick={this.handleEditSave.bind(this)}>
+                                                onClick={this.handleEditSave.bind(this,tr,field.key)}>
                                             <i className="fa fa-check"></i>
                                         </Button>
                                     </div>
