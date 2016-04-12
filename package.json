@@ -1,6 +1,6 @@
 {
   "name": "fit-table",
-  "version": "2.0.77",
+  "version": "2.0.78",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "fit-style": "^2.0.50",
     "react": "^0.14.7",
     "fit-button": "^2.0.42",
-    "fit-modal": "^2.0.49",
+    "fit-modal": "^2.0.50",
     "fit-input": "^2.0.50",
     "fit-select": "^2.0.55",
     "fit-datepicker": "^2.0.60",
