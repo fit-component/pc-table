@@ -421,7 +421,7 @@ export default class Table extends React.Component {
         $.ajax({
             url     : this.props.edit.url,
             method  : this.props.edit.method,
-            data    : this.props.edit.beforeSend(rowInfo, key),
+            data    : this.props.edit.beforeSend(rowInfo, key, this.state.editValue),
             dataType: this.props.get.dataType || 'json'
         }).done((res)=> {
             if (typeof res === 'string') {
