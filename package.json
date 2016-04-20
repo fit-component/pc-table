@@ -1,6 +1,6 @@
 {
   "name": "fit-table",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -13,21 +13,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fit-style": "^3.0.1",
+    "fit-style": "^3.0.2",
     "react": "^15.0.1",
-    "fit-button": "^3.0.8",
-    "fit-modal": "^3.0.6",
-    "fit-input": "^3.0.1",
-    "fit-select": "^3.0.1",
-    "fit-datepicker": "^3.0.10",
-    "fit-timepicker": "^3.0.10",
+    "fit-button": "^3.0.9",
+    "fit-modal": "^3.0.7",
+    "fit-input": "^3.0.2",
+    "fit-select": "^3.0.2",
+    "fit-datepicker": "^3.0.11",
+    "fit-timepicker": "^3.0.11",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
     "react-dom": "^15.0.1",
     "classnames": "^2.2.3",
     "fit-pagination": "^3.0.0",
-    "fit-checkbox": "^3.0.1",
-    "fit-radio": "^3.0.10",
+    "fit-checkbox": "^3.0.2",
+    "fit-radio": "^3.0.11",
     "fit-render-to": "^3.0.5"
   }
 }
