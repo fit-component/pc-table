@@ -142,7 +142,6 @@ export default class Demo extends React.Component {
 		return (
 				<div>
 					<div id="out-dom" style={{
-						border: '2px solid #000',
 						paddingBottom: 10
 					}}></div>
 					<Table {...info}/>
