@@ -1,8 +1,8 @@
 import React from 'react'
 import Input from 'fit-input'
 import Button from 'fit-button'
-import { Select, Option } from 'fit-select'
-import { DateInput } from 'fit-datepicker'
+import {Select, Option} from 'fit-select'
+import {DateInput} from 'fit-datepicker'
 import Timepicker from 'fit-timepicker'
 import $ from 'jquery'
 import _ from 'lodash'
@@ -32,7 +32,7 @@ export default class Finder extends React.Component {
         })
 
         this.state = {
-            opts: finder,
+            opts   : finder,
             loading: false
         }
 
@@ -40,28 +40,28 @@ export default class Finder extends React.Component {
             return lists.map((item, index)=> {
                 let itemStyle = {
                     marginLeft: index === 0 ? null : 10,
-                    marginRight: 10,
-                    width: item.width || null,
-                    display: 'flex'
+                    width     : item.width || null,
+                    display   : 'flex'
                 }
 
                 switch (item.type) {
                 case 'text':
                     return (
-                        <Input key={'item'+index}
-                               style={itemStyle}
-                               width={item.width || null}
-                            {...item.props}
-                               label={notEnum?null:item.label}
-                               value={item.value}
-                               onChange={this.handleChange.bind(this,index,parentIndex)}/>
+                        <Input {...item.props}
+                            key={'item'+index}
+                            style={itemStyle}
+                            label={notEnum?null:item.label}
+                            value={item.value}
+                            onChange={this.handleChange.bind(this,index,parentIndex)}/>
                     )
                 case 'select':
                     let Options = item.select.map((elItem, elIndex)=> {
                         return (
-                            <Option key={elIndex}
-                                {...item.props}
-                                    value={toString(elItem.key)}>{elItem.value}</Option>
+                            <Option {...item.props}
+                                style={itemStyle}
+                                key={elIndex}
+                                label={notEnum?null:item.label}
+                                value={toString(elItem.key)}>{elItem.value}</Option>
                         )
                     })
 
@@ -69,38 +69,36 @@ export default class Finder extends React.Component {
                         item.defaultValue = toString(item.defaultValue)
                     }
 
-
                     return (
-                        <Select width="100%"
-                                style={itemStyle}
-                                key={'item'+index}
-                            {...item.props}
-                                label={notEnum?null:item.label}
-                                value={toString(item.value)||item.defaultValue||item.select[0].key}
-                                onChange={this.handleChange.bind(this,index,parentIndex)}>
+                        <Select {...item.props}
+                            style={itemStyle}
+                            key={'item'+index}
+                            label={notEnum?null:item.label}
+                            value={toString(item.value)||item.defaultValue||item.select[0].key}
+                            onChange={this.handleChange.bind(this,index,parentIndex)}>
                             {Options}
                         </Select>
                     )
                 case 'time':
                     return (
-                        <Timepicker key={'item'+index}
-                                    style={itemStyle}
-                                    input={{label:notEnum?null:item.label}}
-                                    defaultValue={item.value}
-                            {...item.props}
-                                    onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
+                        <Timepicker {...item.props}
+                            key={'item'+index}
+                            style={itemStyle}
+                            input={{label:notEnum?null:item.label}}
+                            defaultValue={item.value}
+                            onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
                 case 'date':
                     let dateStyle = _.cloneDeep(itemStyle)
 
                     return (
-                        <DateInput key={'item'+index}
-                                   style={dateStyle}
-                                   input={{label:notEnum?null:item.label}}
-                                   width={item.width || null}
-                            {...item.props}
-                                   defaultValue={item.value}
-                                   onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
+                        <DateInput {...item.props}
+                            key={'item'+index}
+                            style={dateStyle}
+                            input={{label:notEnum?null:item.label}}
+                            width={item.width || null}
+                            defaultValue={item.value}
+                            onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
                 case 'enum':
                     if (notEnum)break
@@ -126,7 +124,6 @@ export default class Finder extends React.Component {
                              style={itemStyle}>
                             <Select onChange={this.handleEnumChange.bind(this,index)}
                                     width={item.width || null}
-                                    simple
                                     key={index}
                                     value={item.value || item.defaultValue}>
                                 {EnumOptions}
@@ -142,6 +139,9 @@ export default class Finder extends React.Component {
     // 选项被修改
     handleChange(index, parentIndex, value) {
         let newOpts = this.state.opts
+
+        // 兼容 event
+        value = value.target ? value.target.value : value
 
         if (parentIndex === -1) {
             newOpts[index].value = value
@@ -161,7 +161,7 @@ export default class Finder extends React.Component {
         } else {
             this.handleChange(index, parentIndex, {
                 start: value.startDate.format(format),
-                end: value.endDate.format(format)
+                end  : value.endDate.format(format)
             })
         }
     }
@@ -212,7 +212,7 @@ export default class Finder extends React.Component {
         return (
             <div className="_namespace">
                 {Finders}
-                <div style={{flexGrow:1,display:'flex',justifyContent:'flex-end',alignItem:'center'}}>
+                <div style={{flexGrow:1,display:'flex',justifyContent:'center',alignItems:'center'}}>
                     <Button addonLeft="search"
                             onClick={this.handleSearch.bind(this)}
                             loading={this.state.loading}
