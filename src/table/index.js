@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import Pagination from 'fit-pagination'
+import {Pagination, PaginationFull} from 'fit-pagination'
 import Checkbox from 'fit-checkbox'
 import Radio from 'fit-radio'
 import Input from 'fit-input'
@@ -687,11 +687,18 @@ export default class Table extends React.Component {
                             <div
                                 style={{flexGrow:1,paddingLeft:15}}>{extend(this.extendInfo)}</div>
                             {_.isEmpty(this.state.paginOpts) ? null :
-                                <Pagination style={{flexGrow:1}}
-                                            ref="pagination"
-                                            onChange={this.handleChangePage.bind(this)}
-                                    {...this.state.paginOpts}
-                                            loading={this.state.loading}/>
+                                this.state.paginOpts.allPage > 1 ?
+                                    <PaginationFull style={{flexGrow:1}}
+                                                    ref="pagination"
+                                                    onChange={this.handleChangePage.bind(this)}
+                                        {...this.state.paginOpts}
+                                                    loading={this.state.loading}/>
+                                    :
+                                    <Pagination style={{flexGrow:1}}
+                                                ref="pagination"
+                                                onChange={this.handleChangePage.bind(this)}
+                                        {...this.state.paginOpts}
+                                                loading={this.state.loading}/>
                             }
                         </div>
                     }

@@ -39,7 +39,7 @@ export default class Finder extends React.Component {
         this.getChilds = (lists, notEnum = false, parentIndex = -1)=> {
             return lists.map((item, index)=> {
                 let itemStyle = {
-                    marginLeft: index === 0 ? null : 10,
+                    marginLeft: index === 0 || notEnum ? null : 10,
                     width     : item.width || null,
                     display   : 'flex'
                 }
@@ -50,7 +50,7 @@ export default class Finder extends React.Component {
                         <Input {...item.props}
                             key={'item'+index}
                             style={itemStyle}
-                            label={notEnum?null:item.label}
+                            label={item.label}
                             value={item.value}
                             onChange={this.handleChange.bind(this,index,parentIndex)}/>
                     )
@@ -60,7 +60,7 @@ export default class Finder extends React.Component {
                             <Option {...item.props}
                                 style={itemStyle}
                                 key={elIndex}
-                                label={notEnum?null:item.label}
+                                label={item.label}
                                 value={toString(elItem.key)}>{elItem.value}</Option>
                         )
                     })
@@ -73,7 +73,7 @@ export default class Finder extends React.Component {
                         <Select {...item.props}
                             style={itemStyle}
                             key={'item'+index}
-                            label={notEnum?null:item.label}
+                            label={item.label}
                             value={toString(item.value)||item.defaultValue||item.select[0].key}
                             onChange={this.handleChange.bind(this,index,parentIndex)}>
                             {Options}
@@ -84,7 +84,7 @@ export default class Finder extends React.Component {
                         <Timepicker {...item.props}
                             key={'item'+index}
                             style={itemStyle}
-                            input={{label:notEnum?null:item.label}}
+                            input={{label:item.label}}
                             defaultValue={item.value}
                             onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
                     )
@@ -95,7 +95,7 @@ export default class Finder extends React.Component {
                         <DateInput {...item.props}
                             key={'item'+index}
                             style={dateStyle}
-                            input={{label:notEnum?null:item.label}}
+                            input={{label:item.label}}
                             width={item.width || null}
                             defaultValue={item.value}
                             onChange={this.handleChangeDate.bind(this,index,parentIndex,item.format)}/>
