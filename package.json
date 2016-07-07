@@ -1,6 +1,6 @@
 {
   "name": "fit-table",
-  "version": "3.1.44",
+  "version": "3.1.45",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "lodash": "^3.10.1",
     "react-dom": "^15.1.0",
     "classnames": "^2.2.3",
-    "fit-pagination": "^4.0.24",
+    "fit-pagination": "^4.0.25",
     "fit-checkbox": "^3.0.14",
     "fit-radio": "^3.1.29",
     "fit-render-to": "^3.1.6"
