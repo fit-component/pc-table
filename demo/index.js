@@ -1,7 +1,3 @@
 // @demo
-<<<<<<< HEAD
-// data:24 ajax:24 pagination:24 add:24 custom:24 custom-col:24 delete:24 edit:24 fields:24 find:24 outsideFind:24 mock-delete:24 outside:24 responsive:24 select:24 simple-ajax:24 sort:24 static-sort:24
-=======
 // data:24 ajax:24 pagination:24 add:24 custom:24 custom-col:24 delete:24 edit:24 fields:24 find:24 outsideFind:24 mock-delete:24 outside:24 responsive:24 select:24 simple-ajax:24 sort:24
->>>>>>> bf071c8097f2a741e9f2bc28961812c70b7946db
 import './mock'
