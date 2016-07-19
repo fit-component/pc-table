@@ -659,7 +659,7 @@ export default class Table extends React.Component {
         }
 
         return (
-            <div {...others} className={classes}>
+            <div className={classes}>
                 <div className="panel">
                     <div className="panel-heading">
                         {title}
