@@ -290,6 +290,7 @@ export default class Table extends React.Component {
 
     // checkbox行选择点击
     onTrCheckboxClick(info, index, checked) {
+        console.log(info,index,checked)
         let newSelectRowList = _.cloneDeep(this.state.selectRowList)
 
         if (checked) {
